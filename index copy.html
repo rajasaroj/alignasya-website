@@ -1,0 +1,2414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AlignAsya — Physiotherapy & Wellness Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Brand: spine-blue + leaf-green + warm khaki + coral */
+    --teal-900: #0E4F63;
+    --teal-800: #1B7A98;
+    --teal-700: #2999BC;
+    --teal-500: #5FB6CF;
+    --teal-300: #B8DCE7;
+    --green-600: #5FA82D;
+    --green-500: #7AC143;
+    --green-300: #BFE39A;
+    --cream: #F5EFDE;
+    --cream-dark: #E5DCC2;
+    --paper: #FEFBF2;
+    --sage: #C9D6BE;
+    --sage-deep: #91A887;
+    --copper: #E4564E;
+    --copper-deep: #C13E36;
+    --ink: #133140;
+    --muted: #5E7480;
+    --line: rgba(27, 122, 152, 0.16);
+    --line-soft: rgba(27, 122, 152, 0.09);
+    --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+    --sans: 'Manrope', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    overflow-x: hidden;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--teal-800); color: var(--cream); }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+  .container-wide { max-width: 1440px; margin: 0 auto; padding: 0 40px; }
+
+  /* ============ NAV ============ */
+  nav.top {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 18px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(0px);
+  }
+  nav.top.scrolled {
+    background: rgba(251, 246, 236, 0.85);
+    backdrop-filter: blur(20px);
+    padding: 14px 40px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    font-family: var(--serif); font-size: 26px; font-weight: 600;
+    color: var(--teal-800); letter-spacing: -0.5px;
+  }
+  .logo img {
+    transition: transform 0.3s, height 0.3s;
+    mix-blend-mode: multiply;
+    filter: contrast(1.05);
+  }
+  .logo:hover img { transform: scale(1.03); }
+  .logo-nav img { height: 64px; width: auto; display: block; }
+  nav.top.scrolled .logo-nav img { height: 52px; }
+  @media (max-width: 600px) {
+    .logo-nav img { height: 48px; }
+    nav.top.scrolled .logo-nav img { height: 42px; }
+  }
+  .nav-links { display: flex; gap: 38px; align-items: center; }
+  .nav-links a {
+    font-size: 13px; color: var(--ink); text-decoration: none;
+    font-weight: 500; letter-spacing: 0.02em;
+    position: relative; padding: 8px 0;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal-700); }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 1px; background: var(--copper);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    background: var(--teal-800); color: var(--cream) !important;
+    padding: 12px 22px !important; border-radius: 100px;
+    transition: all 0.25s !important;
+  }
+  .nav-cta:hover { background: var(--teal-900); transform: translateY(-1px); }
+  .nav-cta::after { display: none !important; }
+
+  /* ============ HERO ============ */
+  .hero {
+    min-height: 100vh;
+    padding: 140px 40px 80px;
+    position: relative;
+    background: linear-gradient(180deg, var(--paper) 0%, var(--cream) 100%);
+    overflow: hidden;
+  }
+  .hero-bg-circle {
+    position: absolute;
+    width: 720px; height: 720px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--sage) 0%, var(--teal-300) 60%, transparent 75%);
+    opacity: 0.45;
+    top: -180px; right: -200px;
+    filter: blur(2px);
+    z-index: 0;
+  }
+  .hero-bg-leaf {
+    position: absolute;
+    width: 320px; height: 320px;
+    background: var(--copper);
+    opacity: 0.08;
+    border-radius: 50% 0 50% 0;
+    bottom: -100px; left: -120px;
+    transform: rotate(-25deg);
+    z-index: 0;
+  }
+  .hero-inner {
+    max-width: 1280px; margin: 0 auto;
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 60px;
+    align-items: center;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--teal-700); letter-spacing: 0.18em; text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow .dot { width: 6px; height: 6px; background: var(--copper); border-radius: 50%; }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(56px, 7vw, 96px);
+    line-height: 0.98;
+    font-weight: 400;
+    color: var(--teal-900);
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--copper);
+    font-weight: 400;
+  }
+  .hero h1 .underline {
+    position: relative; display: inline-block;
+  }
+  .hero h1 .underline svg {
+    position: absolute; bottom: -8px; left: 0; width: 100%;
+  }
+  .hero p.lead {
+    font-size: 18px; color: var(--muted);
+    max-width: 480px; line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  .hero-ctas { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 28px; border-radius: 100px;
+    font-family: var(--sans); font-size: 14px; font-weight: 500;
+    text-decoration: none; cursor: pointer; border: none;
+    transition: all 0.25s ease;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary {
+    background: var(--teal-800); color: var(--cream);
+  }
+  .btn-primary:hover { background: var(--teal-900); transform: translateY(-2px); box-shadow: 0 12px 28px -8px rgba(15, 61, 68, 0.35); }
+  .btn-ghost {
+    background: transparent; color: var(--teal-800);
+    border: 1px solid var(--teal-800);
+  }
+  .btn-ghost:hover { background: var(--teal-800); color: var(--cream); }
+  .btn .arrow { transition: transform 0.3s; }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  .hero-stats {
+    display: flex; gap: 36px; margin-top: 64px;
+    padding-top: 32px; border-top: 1px solid var(--line);
+  }
+  .stat .num {
+    font-family: var(--serif); font-size: 38px;
+    color: var(--teal-800); font-weight: 500;
+    letter-spacing: -0.02em;
+    display: flex; align-items: baseline; gap: 4px;
+  }
+  .stat .num small { font-size: 22px; color: var(--copper); }
+  .stat .label {
+    font-size: 12px; color: var(--muted);
+    letter-spacing: 0.05em; text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* Hero visual */
+  .hero-visual {
+    position: relative;
+    height: 580px;
+  }
+  .hero-card {
+    position: absolute;
+    background: var(--paper);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px -20px rgba(15, 61, 68, 0.25);
+    overflow: hidden;
+  }
+  .hero-portrait {
+    width: 360px; height: 460px;
+    top: 30px; right: 40px;
+    border-radius: 240px 240px 16px 16px;
+    background: linear-gradient(160deg, var(--teal-700) 0%, var(--teal-800) 50%, var(--teal-900) 100%);
+    display: flex; align-items: flex-end; justify-content: center;
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+  .hero-portrait::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255,255,255,0.08) 0, transparent 40%),
+      repeating-linear-gradient(45deg, transparent 0, transparent 14px, rgba(255,255,255,0.025) 14px, rgba(255,255,255,0.025) 15px);
+  }
+  .portrait-fig {
+    width: 280px; height: 380px;
+    position: relative; z-index: 2;
+  }
+  /* Abstract figure - simple silhouette */
+  .portrait-fig svg { width: 100%; height: 100%; }
+
+  .hero-card.tag {
+    background: var(--cream);
+    padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px;
+    border-radius: 100px;
+    bottom: 110px; left: -10px;
+    border: 1px solid var(--line-soft);
+  }
+  .tag-icon {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--sage); display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .tag-text { font-size: 13px; color: var(--ink); }
+  .tag-text strong { display: block; color: var(--teal-800); font-weight: 600; margin-bottom: 2px; }
+  .tag-text span { font-size: 11px; color: var(--muted); }
+
+  .hero-card.live {
+    bottom: 30px; right: -20px;
+    padding: 16px 20px;
+    border-radius: 14px;
+    display: flex; flex-direction: column; gap: 10px;
+    min-width: 220px;
+    background: var(--teal-900);
+    color: var(--cream);
+  }
+  .live-row { display: flex; align-items: center; gap: 8px; }
+  .pulse {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #6FCF8E;
+    box-shadow: 0 0 0 0 rgba(111, 207, 142, 0.7);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(111, 207, 142, 0.6); }
+    70% { box-shadow: 0 0 0 12px rgba(111, 207, 142, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(111, 207, 142, 0); }
+  }
+  .live-row .label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal-300); }
+  .live .next { font-family: var(--serif); font-size: 22px; font-weight: 500; }
+  .live .meta { font-size: 11px; color: var(--teal-300); display: flex; gap: 14px; }
+
+  .hero-card.cert {
+    top: -10px; left: -20px;
+    padding: 14px 18px;
+    background: var(--paper);
+    border-radius: 100px;
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--teal-800);
+    letter-spacing: 0.05em;
+    border: 1px solid var(--line-soft);
+  }
+  .cert .check {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--copper); color: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+  }
+
+  /* Marquee */
+  .hero-marquee {
+    margin-top: 80px;
+    padding: 18px 0;
+    border-top: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
+    overflow: hidden;
+    position: relative; z-index: 2;
+  }
+  .marquee-track {
+    display: flex; gap: 60px;
+    animation: scroll 40s linear infinite;
+    width: max-content;
+  }
+  .marquee-item {
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--serif); font-size: 22px;
+    color: var(--teal-800); white-space: nowrap;
+    font-style: italic;
+  }
+  .marquee-item .sep {
+    width: 6px; height: 6px; background: var(--copper);
+    border-radius: 50%;
+  }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ============ SECTION SHARED ============ */
+  section { padding: 120px 0; position: relative; }
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--teal-700); letter-spacing: 0.18em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .section-eyebrow::before {
+    content: ''; width: 24px; height: 1px; background: var(--copper);
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.05; font-weight: 400;
+    color: var(--teal-900); letter-spacing: -0.015em;
+    max-width: 800px;
+  }
+  .section-title em { font-style: italic; color: var(--copper); }
+  .section-subtitle {
+    font-size: 17px; color: var(--muted);
+    max-width: 580px; margin-top: 24px; line-height: 1.6;
+  }
+
+  /* ============ DOCTOR ============ */
+  .doctor {
+    background: var(--cream);
+    position: relative;
+  }
+  .doctor::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: var(--line-soft);
+  }
+  .doctor-grid {
+    display: grid; grid-template-columns: 0.8fr 1.2fr;
+    gap: 80px; align-items: center;
+  }
+  .doctor-portrait {
+    aspect-ratio: 4/5;
+    border-radius: 8px;
+    background: linear-gradient(165deg, var(--teal-700), var(--teal-900));
+    position: relative; overflow: hidden;
+    box-shadow: 0 30px 60px -30px rgba(15, 61, 68, 0.4);
+  }
+  .doctor-portrait::after {
+    content: 'Dr. Renu Saroj';
+    position: absolute; bottom: 24px; left: 24px;
+    font-family: var(--serif); font-size: 28px;
+    font-style: italic; color: var(--cream);
+  }
+  .doctor-portrait .placeholder-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(135deg, transparent 48%, rgba(245, 237, 224, 0.06) 48%, rgba(245, 237, 224, 0.06) 52%, transparent 52%);
+    background-size: 16px 16px;
+  }
+  .doctor-portrait .photo-label {
+    position: absolute; top: 24px; left: 24px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em;
+    color: var(--cream); opacity: 0.7;
+  }
+  .doctor h2 { margin-bottom: 28px; }
+  .doctor-creds {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin: 32px 0;
+  }
+  .cred-pill {
+    padding: 8px 16px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    font-size: 12px; color: var(--teal-800);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .cred-pill.solid {
+    background: var(--teal-800); color: var(--cream); border-color: var(--teal-800);
+  }
+  .doctor-quote {
+    font-family: var(--serif); font-size: 24px;
+    font-style: italic; line-height: 1.4;
+    color: var(--teal-800);
+    border-left: 2px solid var(--copper);
+    padding-left: 24px; margin: 32px 0;
+    max-width: 540px;
+  }
+  .doctor-meta {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-top: 36px;
+    padding-top: 32px; border-top: 1px solid var(--line);
+  }
+  .meta-item .k {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--muted); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .meta-item .v {
+    font-size: 15px; color: var(--teal-900); font-weight: 500;
+  }
+
+  /* ============ SPECIALIZATIONS ============ */
+  .specs-head {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 60px; gap: 40px;
+  }
+  .specs-head .right { max-width: 380px; }
+  .specs-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 16px; overflow: hidden;
+  }
+  .spec-card {
+    background: var(--paper);
+    padding: 40px 32px;
+    position: relative; cursor: pointer;
+    transition: all 0.4s ease;
+    min-height: 320px;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .spec-card:hover {
+    background: var(--teal-800);
+    color: var(--cream);
+  }
+  .spec-num {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--muted); letter-spacing: 0.1em;
+    margin-bottom: 28px;
+  }
+  .spec-card:hover .spec-num { color: var(--teal-300); }
+  .spec-icon {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--sage); margin-bottom: 24px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.4s;
+  }
+  .spec-card:hover .spec-icon { background: var(--copper); }
+  .spec-icon svg { width: 28px; height: 28px; stroke: var(--teal-900); fill: none; stroke-width: 1.5; }
+  .spec-card:hover .spec-icon svg { stroke: var(--cream); }
+  .spec-title {
+    font-family: var(--serif); font-size: 30px;
+    font-weight: 500; line-height: 1.1;
+    margin-bottom: 14px;
+    color: var(--teal-900); transition: color 0.4s;
+  }
+  .spec-card:hover .spec-title { color: var(--cream); }
+  .spec-card:hover .spec-title em { color: var(--copper); }
+  .spec-title em { font-style: italic; color: var(--copper); }
+  .spec-desc {
+    font-size: 14px; line-height: 1.55;
+    color: var(--muted); flex-grow: 1;
+  }
+  .spec-card:hover .spec-desc { color: var(--teal-300); }
+  .spec-link {
+    margin-top: 24px;
+    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--teal-800);
+    display: flex; align-items: center; gap: 8px;
+    font-weight: 600;
+  }
+  .spec-card:hover .spec-link { color: var(--cream); }
+  .spec-link .arr { transition: transform 0.3s; }
+  .spec-card:hover .spec-link .arr { transform: translateX(6px); }
+
+  /* ============ MODALITIES ============ */
+  .modalities {
+    background: var(--teal-900); color: var(--cream);
+    overflow: hidden;
+  }
+  .modalities .section-eyebrow { color: var(--teal-300); }
+  .modalities .section-eyebrow::before { background: var(--copper); }
+  .modalities .section-title { color: var(--cream); }
+  .modalities .section-title em { color: var(--copper); }
+  .modalities .section-subtitle { color: var(--teal-300); }
+
+  .mod-tabs {
+    margin-top: 80px;
+    display: grid; grid-template-columns: 320px 1fr;
+    gap: 60px; align-items: start;
+  }
+  .mod-tab-list {
+    display: flex; flex-direction: column;
+    gap: 4px;
+  }
+  .mod-tab {
+    text-align: left;
+    background: transparent;
+    border: none; border-left: 1px solid rgba(167, 196, 199, 0.2);
+    color: var(--teal-300);
+    padding: 20px 24px;
+    cursor: pointer;
+    font-family: var(--serif); font-size: 26px;
+    font-weight: 400;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .mod-tab.active {
+    color: var(--cream);
+    border-left-color: var(--copper);
+    border-left-width: 2px;
+  }
+  .mod-tab:hover:not(.active) { color: var(--cream); }
+  .mod-tab .num {
+    font-family: var(--mono); font-size: 11px;
+    display: block; margin-bottom: 4px;
+    color: var(--teal-500);
+  }
+  .mod-content {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(167, 196, 199, 0.15);
+    border-radius: 16px;
+    padding: 48px;
+    min-height: 480px;
+    position: relative;
+  }
+  .mod-panel {
+    display: none;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px; align-items: start;
+  }
+  .mod-panel.active { display: grid; animation: fadeIn 0.5s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .mod-panel h3 {
+    font-family: var(--serif); font-size: 42px;
+    font-weight: 400; margin-bottom: 20px;
+    line-height: 1.05; color: var(--cream);
+  }
+  .mod-panel h3 em { color: var(--copper); font-style: italic; }
+  .mod-panel p {
+    color: var(--teal-300); font-size: 15px; line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  .mod-bullets { list-style: none; padding: 0; }
+  .mod-bullets li {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(167, 196, 199, 0.12);
+    color: var(--cream); font-size: 14px;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .mod-bullets li::before {
+    content: ''; width: 6px; height: 6px; margin-top: 8px;
+    background: var(--copper); border-radius: 50%; flex-shrink: 0;
+  }
+  .mod-visual {
+    aspect-ratio: 4/5;
+    border-radius: 12px;
+    background: linear-gradient(160deg, var(--teal-700), var(--teal-800));
+    position: relative; overflow: hidden;
+    border: 1px solid rgba(167, 196, 199, 0.15);
+  }
+  .mod-visual .label {
+    position: absolute; top: 18px; left: 18px;
+    font-family: var(--mono); font-size: 10px;
+    color: var(--teal-300); letter-spacing: 0.1em;
+  }
+  .mod-visual svg { width: 100%; height: 100%; }
+  .mod-stats {
+    display: flex; gap: 32px;
+    margin-top: 28px; padding-top: 24px;
+    border-top: 1px solid rgba(167, 196, 199, 0.15);
+  }
+  .mod-stat .v {
+    font-family: var(--serif); font-size: 32px;
+    color: var(--copper); font-weight: 500;
+  }
+  .mod-stat .l {
+    font-size: 11px; color: var(--teal-300);
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+
+  /* ============ WOMEN'S HEALTH ============ */
+  .womens {
+    background: var(--cream);
+    position: relative; overflow: hidden;
+  }
+  .womens-decor {
+    position: absolute;
+    width: 480px; height: 480px; border-radius: 50%;
+    border: 1px solid var(--copper); opacity: 0.2;
+    top: 80px; right: -160px;
+  }
+  .womens-decor.two {
+    width: 280px; height: 280px;
+    bottom: 120px; left: -80px;
+    background: var(--sage); border: none; opacity: 0.3;
+    filter: blur(40px);
+  }
+  .womens-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+    position: relative; z-index: 2;
+  }
+  .womens-image {
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background: linear-gradient(160deg, var(--copper), var(--copper-deep));
+    position: relative;
+    box-shadow: 0 30px 60px -30px rgba(194, 136, 86, 0.5);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .womens-image::before {
+    content: ''; position: absolute; inset: -20px;
+    border: 1px dashed var(--copper); border-radius: 50%;
+    opacity: 0.4;
+    animation: spin 60s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .womens-badge {
+    width: 70%; height: 70%; border-radius: 50%;
+    background: var(--cream);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 40px;
+  }
+  .womens-badge .h {
+    font-family: var(--serif); font-style: italic;
+    font-size: 28px; color: var(--teal-800);
+    margin-bottom: 8px;
+  }
+  .womens-badge .sub {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--copper); margin-bottom: 20px;
+  }
+  .womens-badge .lines {
+    width: 60%; height: 1px; background: var(--line);
+    margin: 16px 0;
+  }
+  .womens-badge .body-num {
+    font-family: var(--serif); font-size: 56px;
+    color: var(--teal-900); font-weight: 500;
+    line-height: 1;
+  }
+  .womens-badge .body-lab {
+    font-size: 11px; color: var(--muted);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  .program-cards {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin-top: 36px;
+  }
+  .program-card {
+    background: var(--paper);
+    border: 1px solid var(--line-soft);
+    border-radius: 14px;
+    padding: 24px;
+    transition: all 0.3s;
+  }
+  .program-card:hover { border-color: var(--copper); transform: translateY(-2px); }
+  .program-card .tag {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--copper); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .program-card h4 {
+    font-family: var(--serif); font-size: 24px;
+    font-weight: 500; line-height: 1.1;
+    margin-bottom: 10px; color: var(--teal-900);
+  }
+  .program-card p {
+    font-size: 13px; color: var(--muted); line-height: 1.55;
+  }
+  .program-card .duration {
+    margin-top: 16px;
+    display: flex; justify-content: space-between;
+    font-size: 12px; color: var(--teal-700);
+    padding-top: 16px; border-top: 1px solid var(--line-soft);
+  }
+
+  /* ============ JOURNEY ============ */
+  .journey {
+    padding-bottom: 160px;
+  }
+  .journey-track {
+    margin-top: 80px;
+    position: relative;
+  }
+  .journey-track::before {
+    content: ''; position: absolute;
+    top: 32px; left: 5%; right: 5%; height: 1px;
+    background: linear-gradient(to right, transparent, var(--copper) 20%, var(--copper) 80%, transparent);
+  }
+  .journey-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .journey-step { position: relative; }
+  .journey-num {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--copper);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 24px; font-weight: 500;
+    color: var(--copper);
+    margin-bottom: 28px;
+    position: relative; z-index: 2;
+    transition: all 0.4s;
+  }
+  .journey-step:hover .journey-num {
+    background: var(--copper); color: var(--cream);
+    transform: scale(1.05);
+  }
+  .journey-step h4 {
+    font-family: var(--serif); font-size: 26px;
+    font-weight: 500; line-height: 1.1;
+    margin-bottom: 12px; color: var(--teal-900);
+  }
+  .journey-step p { font-size: 14px; color: var(--muted); line-height: 1.55; max-width: 240px; }
+  .journey-step .dur {
+    margin-top: 16px;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--teal-700); letter-spacing: 0.05em;
+  }
+
+  /* ============ TESTIMONIALS ============ */
+  .testimonials {
+    background: var(--teal-800); color: var(--cream);
+    overflow: hidden;
+  }
+  .testimonials .section-eyebrow { color: var(--teal-300); }
+  .testimonials .section-eyebrow::before { background: var(--copper); }
+  .testimonials .section-title { color: var(--cream); }
+  .testimonials .section-title em { color: var(--copper); }
+
+  .test-track {
+    margin-top: 80px;
+    position: relative;
+  }
+  .test-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .test-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(167, 196, 199, 0.18);
+    border-radius: 16px;
+    padding: 36px 32px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+  }
+  .test-card:hover {
+    background: rgba(255,255,255,0.07);
+    transform: translateY(-4px);
+    border-color: var(--copper);
+  }
+  .test-stars {
+    display: flex; gap: 4px; margin-bottom: 20px;
+    color: var(--copper);
+  }
+  .test-stars svg { width: 16px; height: 16px; }
+  .test-quote {
+    font-family: var(--serif); font-size: 22px;
+    line-height: 1.4; font-weight: 400;
+    margin-bottom: 28px; color: var(--cream);
+  }
+  .test-quote::before { content: '"'; color: var(--copper); margin-right: 4px; }
+  .test-quote::after { content: '"'; color: var(--copper); margin-left: 4px; }
+  .test-meta {
+    display: flex; align-items: center; gap: 14px;
+    padding-top: 20px; border-top: 1px solid rgba(167, 196, 199, 0.15);
+  }
+  .avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--copper), var(--copper-deep));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 18px; color: var(--cream);
+    flex-shrink: 0;
+  }
+  .test-meta .name { font-size: 14px; font-weight: 600; color: var(--cream); }
+  .test-meta .role { font-size: 12px; color: var(--teal-300); }
+
+  .test-controls {
+    display: flex; gap: 12px; align-items: center;
+    margin-top: 40px; justify-content: space-between;
+  }
+  .test-dots { display: flex; gap: 8px; }
+  .test-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(167, 196, 199, 0.3);
+    border: none; cursor: pointer; padding: 0;
+    transition: all 0.3s;
+  }
+  .test-dot.active { background: var(--copper); width: 28px; border-radius: 100px; }
+  .test-arrows { display: flex; gap: 10px; }
+  .test-arrow {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: transparent; color: var(--cream);
+    border: 1px solid rgba(167, 196, 199, 0.3);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s;
+  }
+  .test-arrow:hover { background: var(--copper); border-color: var(--copper); }
+
+  /* ============ BOOKING ============ */
+  .booking {
+    padding: 120px 0;
+    background: var(--paper);
+  }
+  .booking-grid {
+    display: grid; grid-template-columns: 0.85fr 1.15fr;
+    gap: 80px; align-items: stretch;
+  }
+  .booking-info { padding-top: 40px; }
+  .booking-info .quote-large {
+    font-family: var(--serif); font-size: 32px;
+    font-style: italic; line-height: 1.3;
+    color: var(--teal-800); margin: 32px 0;
+  }
+  .booking-features {
+    list-style: none; padding: 0; margin-top: 36px;
+  }
+  .booking-features li {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line-soft);
+    display: flex; align-items: center; gap: 16px;
+    font-size: 15px; color: var(--ink);
+  }
+  .booking-features .check {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--sage);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .booking-features .check svg { width: 14px; height: 14px; stroke: var(--teal-900); }
+
+  .booking-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 30px 60px -30px rgba(15, 61, 68, 0.2);
+  }
+  .step-tracker {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 32px;
+  }
+  .step-pill {
+    flex: 1; height: 3px; border-radius: 100px;
+    background: var(--line);
+    transition: background 0.4s;
+  }
+  .step-pill.active { background: var(--copper); }
+  .step-pill.done { background: var(--teal-700); }
+  .step-info {
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--muted); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .step-info .current { color: var(--copper); }
+
+  .step-panel { display: none; }
+  .step-panel.active { display: block; animation: fadeIn 0.4s ease; }
+  .step-h {
+    font-family: var(--serif); font-size: 32px;
+    font-weight: 500; line-height: 1.1;
+    margin-bottom: 8px; color: var(--teal-900);
+  }
+  .step-sub {
+    font-size: 14px; color: var(--muted); margin-bottom: 28px;
+  }
+
+  .service-options {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  .svc-opt {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.25s;
+    background: var(--paper);
+  }
+  .svc-opt:hover { border-color: var(--teal-500); }
+  .svc-opt.selected {
+    border-color: var(--teal-800);
+    background: var(--teal-800);
+    color: var(--cream);
+  }
+  .svc-opt .name {
+    font-family: var(--serif); font-size: 18px;
+    font-weight: 500; margin-bottom: 4px;
+  }
+  .svc-opt .duration { font-size: 12px; color: var(--muted); }
+  .svc-opt.selected .duration { color: var(--teal-300); }
+  .svc-opt .price {
+    margin-top: 10px; padding-top: 10px;
+    border-top: 1px solid var(--line);
+    font-size: 13px; font-weight: 600; color: var(--teal-800);
+  }
+  .svc-opt.selected .price { color: var(--copper); border-color: rgba(255,255,255,0.15); }
+
+  .date-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+  }
+  .date-btn {
+    aspect-ratio: 1; border: 1px solid var(--line);
+    border-radius: 10px; background: var(--paper);
+    cursor: pointer; padding: 8px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    transition: all 0.2s;
+    font-family: var(--sans);
+  }
+  .date-btn:hover:not(:disabled) { border-color: var(--teal-700); }
+  .date-btn.selected {
+    background: var(--teal-800); color: var(--cream);
+    border-color: var(--teal-800);
+  }
+  .date-btn:disabled {
+    opacity: 0.3; cursor: not-allowed;
+  }
+  .date-btn .dow { font-size: 10px; color: var(--muted); }
+  .date-btn.selected .dow { color: var(--teal-300); }
+  .date-btn .day { font-size: 17px; font-weight: 600; color: var(--teal-900); margin-top: 2px; }
+  .date-btn.selected .day { color: var(--cream); }
+
+  .time-section { margin-top: 28px; }
+  .time-section h5 {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--teal-700); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .time-section h5::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--copper); border-radius: 50%;
+  }
+  .time-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+  }
+  .time-btn {
+    padding: 12px 8px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--paper);
+    font-size: 13px; cursor: pointer;
+    transition: all 0.2s; font-family: var(--sans);
+    color: var(--teal-900);
+  }
+  .time-btn:hover { border-color: var(--teal-700); }
+  .time-btn.selected {
+    background: var(--copper); color: var(--cream); border-color: var(--copper);
+  }
+  .time-btn.taken {
+    opacity: 0.4; cursor: not-allowed; text-decoration: line-through;
+  }
+
+  .field { margin-bottom: 18px; }
+  .field label {
+    display: block;
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--teal-700); margin-bottom: 8px;
+  }
+  .field input, .field textarea, .field select {
+    width: 100%; padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-family: var(--sans); font-size: 14px;
+    background: var(--paper); color: var(--ink);
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus {
+    outline: none; border-color: var(--teal-700);
+  }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .summary {
+    background: var(--cream);
+    border-radius: 14px; padding: 24px;
+    margin-bottom: 24px;
+  }
+  .sum-row {
+    display: flex; justify-content: space-between;
+    padding: 10px 0;
+    font-size: 14px;
+  }
+  .sum-row .l { color: var(--muted); }
+  .sum-row .v { color: var(--teal-900); font-weight: 600; }
+  .sum-row.total {
+    border-top: 1px solid var(--line);
+    margin-top: 8px; padding-top: 16px;
+    font-family: var(--serif); font-size: 22px;
+  }
+  .sum-row.total .v { color: var(--copper); font-size: 26px; }
+
+  .step-actions {
+    display: flex; justify-content: space-between;
+    margin-top: 28px; gap: 12px;
+  }
+  .btn-back {
+    background: transparent; border: 1px solid var(--line);
+    padding: 14px 22px; border-radius: 100px;
+    cursor: pointer; font-family: var(--sans); font-size: 13px;
+    color: var(--muted);
+  }
+  .btn-back:hover { color: var(--teal-800); border-color: var(--teal-800); }
+  .btn-next {
+    background: var(--teal-800); color: var(--cream);
+    border: none; padding: 14px 28px; border-radius: 100px;
+    cursor: pointer; font-family: var(--sans); font-size: 13px;
+    font-weight: 500; flex-grow: 1; max-width: 220px;
+    margin-left: auto;
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px;
+    transition: all 0.25s;
+  }
+  .btn-next:hover { background: var(--teal-900); }
+  .btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .confirm-illust {
+    width: 100px; height: 100px; border-radius: 50%;
+    background: var(--sage);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+  }
+  .confirm-illust svg { width: 48px; height: 48px; stroke: var(--teal-900); }
+  .confirm-card { text-align: center; padding: 20px 0; }
+
+  /* ============ HOURS ============ */
+  .hours {
+    background: var(--cream);
+  }
+  .hours-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+  .hours-block {
+    padding-top: 24px;
+  }
+  .hours-table {
+    margin-top: 36px;
+    border-top: 1px solid var(--line);
+  }
+  .hour-row {
+    display: grid; grid-template-columns: 1fr 1.3fr 60px;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+    transition: padding 0.2s;
+  }
+  .hour-row:hover { padding-left: 12px; }
+  .hour-row.today {
+    padding-left: 16px;
+    background: linear-gradient(to right, rgba(194, 136, 86, 0.08), transparent);
+    border-radius: 8px;
+  }
+  .hour-row .day {
+    font-family: var(--serif); font-size: 22px;
+    font-weight: 500; color: var(--teal-900);
+  }
+  .hour-row .times { font-size: 13px; color: var(--muted); }
+  .hour-row .status {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--teal-700); text-align: right;
+  }
+  .hour-row.closed .status { color: var(--copper); }
+  .hour-row.today .status::before {
+    content: ''; display: inline-block;
+    width: 6px; height: 6px; background: #6FCF8E;
+    border-radius: 50%; margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  .contact-card {
+    background: var(--teal-800); color: var(--cream);
+    border-radius: 24px; padding: 48px;
+    position: relative; overflow: hidden;
+  }
+  .contact-card::before {
+    content: ''; position: absolute;
+    width: 240px; height: 240px; border-radius: 50%;
+    background: var(--copper); opacity: 0.2;
+    top: -80px; right: -80px;
+    filter: blur(20px);
+  }
+  .contact-card h3 {
+    font-family: var(--serif); font-size: 36px;
+    font-weight: 400; line-height: 1.05;
+    margin-bottom: 28px; position: relative; z-index: 2;
+  }
+  .contact-card h3 em { color: var(--copper); font-style: italic; }
+  .contact-list { position: relative; z-index: 2; }
+  .contact-row {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(167, 196, 199, 0.2);
+  }
+  .contact-row:last-child { border-bottom: none; }
+  .contact-icon {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-icon svg { width: 18px; height: 18px; stroke: var(--copper); }
+  .contact-row .k {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--teal-300); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 2px;
+  }
+  .contact-row .v { font-size: 15px; color: var(--cream); font-weight: 500; }
+  .contact-row a.v { text-decoration: none; }
+  .contact-row a.v:hover { color: var(--copper); }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--teal-900); color: var(--teal-300);
+    padding: 80px 0 40px;
+    position: relative;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 60px; padding-bottom: 60px;
+    border-bottom: 1px solid rgba(167, 196, 199, 0.15);
+  }
+  .footer-brand .logo {
+    color: var(--cream); margin-bottom: 24px;
+  }
+  .footer-brand p {
+    font-size: 14px; line-height: 1.7;
+    color: var(--teal-300); max-width: 320px;
+  }
+  .footer-col h5 {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--copper); margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; padding: 0; }
+  .footer-col li { padding: 6px 0; }
+  .footer-col a {
+    color: var(--cream); text-decoration: none;
+    font-size: 14px; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--copper); }
+
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 32px;
+    font-size: 12px; color: var(--teal-500);
+  }
+  .footer-bottom .right { display: flex; gap: 24px; }
+  .footer-bottom a { color: var(--teal-500); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--cream); }
+
+  /* Floating WhatsApp */
+  .whatsapp {
+    position: fixed; bottom: 28px; right: 28px;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: #25D366; color: white;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 12px 30px -8px rgba(37, 211, 102, 0.5);
+    z-index: 50; cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+  .whatsapp:hover { transform: scale(1.05); }
+  .whatsapp::before {
+    content: ''; position: absolute; inset: -4px;
+    border-radius: 50%; background: #25D366;
+    opacity: 0.3; animation: pulse-w 2s infinite;
+    z-index: -1;
+  }
+  @keyframes pulse-w {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0; }
+  }
+
+  /* Reveal animation */
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Responsive */
+  @media (max-width: 968px) {
+    .hero-inner, .doctor-grid, .womens-grid, .hours-grid, .booking-grid, .mod-tabs { grid-template-columns: 1fr; gap: 50px; }
+    .specs-grid, .journey-grid, .test-grid, .footer-top { grid-template-columns: 1fr 1fr; }
+    .hero-visual { height: 480px; }
+    .nav-links { display: none; }
+    .nav-links .nav-cta { display: inline-flex !important; }
+    .nav-links { display: flex; gap: 16px; }
+    .nav-links a:not(.nav-cta) { display: none; }
+    .footer-top { gap: 40px; }
+  }
+  @media (max-width: 600px) {
+    .container, .container-wide { padding: 0 24px; }
+    .hero { padding: 120px 24px 60px; }
+    .specs-grid, .journey-grid, .test-grid, .footer-top, .program-cards, .hours-grid { grid-template-columns: 1fr; }
+    .hours-grid, .booking-grid { gap: 40px; }
+    section { padding: 80px 0; }
+    .hero-stats { flex-wrap: wrap; gap: 24px; }
+    .field-row { grid-template-columns: 1fr; }
+    .booking-card { padding: 28px; }
+    .contact-card { padding: 32px; }
+  }
+</style>
+</head>
+<body data-screen-label="01 Home">
+
+<!-- ============ NAV ============ -->
+<nav class="top" id="topnav">
+  <a href="#home" class="logo logo-nav" style="text-decoration: none;">
+    <img src="assets/alignasya-logo.jpg" alt="AlignAsya — Physiotherapy & Wellness Center" style="object-fit: cover" />
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#specializations">Care</a>
+    <a href="#modalities">Modalities</a>
+    <a href="#womens">Women's Health</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#booking">Visit</a>
+    <a href="#booking" class="nav-cta">Book Consultation →</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-bg-circle"></div>
+  <div class="hero-bg-leaf"></div>
+
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        <span>Physiotherapy & Wellness · Est. 2026</span>
+      </div>
+      <h1>
+        Healing<br/>
+        <em>movement,</em><br/>
+        Restoring <span class="underline">life.<svg height="12" viewBox="0 0 200 12" preserveAspectRatio="none"><path d="M2 6 Q 50 0, 100 6 T 198 6" stroke="var(--copper)" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span>
+      </h1>
+      <p class="lead">
+        A modern physiotherapy and wellness sanctuary led by Dr. Renu Saroj — pairing evidence-based rehabilitation with a deeply personal, calming approach to recovery.
+      </p>
+      <div class="hero-ctas">
+        <a href="#booking" class="btn btn-primary">Book your consultation <span class="arrow">→</span></a>
+        <a href="#specializations" class="btn btn-ghost">Explore our care</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="num">500<small>+</small></div>
+          <div class="label">Patients restored</div>
+        </div>
+        <div class="stat">
+          <div class="num">12<small>+</small></div>
+          <div class="label">Years of practice</div>
+        </div>
+        <div class="stat">
+          <div class="num">4.9<small>★</small></div>
+          <div class="label">Average rating</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card cert">
+        <span class="check">✓</span>
+        <span>BPT · Reg PT/012470</span>
+      </div>
+
+      <div class="hero-card hero-portrait">
+        <span class="cert-stripe"></span>
+        <svg class="portrait-fig" viewBox="0 0 280 380" xmlns="http://www.w3.org/2000/svg">
+          <!-- Abstract serene figure / wellness motif -->
+          <defs>
+            <linearGradient id="figGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="var(--cream)" stop-opacity="0.95"/>
+              <stop offset="100%" stop-color="var(--green-300)" stop-opacity="0.6"/>
+            </linearGradient>
+          </defs>
+          <!-- Soft halo -->
+          <circle cx="140" cy="120" r="80" fill="url(#figGrad)" opacity="0.25"/>
+          <!-- Spine/body abstraction -->
+          <path d="M140 60 C 130 100, 130 140, 140 180 C 150 220, 150 280, 140 340"
+                stroke="var(--cream)" stroke-width="3" fill="none" opacity="0.6" stroke-linecap="round"/>
+          <!-- Vertebrae dots -->
+          <circle cx="135" cy="100" r="5" fill="var(--copper)" opacity="0.9"/>
+          <circle cx="138" cy="140" r="5" fill="var(--cream)" opacity="0.7"/>
+          <circle cx="142" cy="180" r="5" fill="var(--cream)" opacity="0.7"/>
+          <circle cx="145" cy="220" r="5" fill="var(--copper)" opacity="0.9"/>
+          <circle cx="146" cy="260" r="5" fill="var(--cream)" opacity="0.7"/>
+          <circle cx="142" cy="300" r="5" fill="var(--cream)" opacity="0.7"/>
+          <!-- Hands suggestion -->
+          <ellipse cx="90" cy="200" rx="22" ry="14" fill="var(--copper)" opacity="0.5" transform="rotate(-20 90 200)"/>
+          <ellipse cx="190" cy="200" rx="22" ry="14" fill="var(--copper)" opacity="0.5" transform="rotate(20 190 200)"/>
+          <!-- Head circle -->
+          <circle cx="140" cy="80" r="30" fill="var(--cream)" opacity="0.3"/>
+          <text x="140" y="365" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--teal-300)" letter-spacing="2">PORTRAIT — DROP IMAGE HERE</text>
+        </svg>
+      </div>
+
+      <div class="hero-card tag">
+        <div class="tag-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--teal-800)" stroke-width="1.8" fill="none">
+            <path d="M12 2 L13 9 L20 10 L13 11 L12 18 L11 11 L4 10 L11 9 Z"/>
+          </svg>
+        </div>
+        <div class="tag-text">
+          <strong>Women's Health Specialist</strong>
+          <span>ANC · PNC · Pelvic Care</span>
+        </div>
+      </div>
+
+      <div class="hero-card live">
+        <div class="live-row">
+          <span class="pulse"></span>
+          <span class="label">Available today</span>
+        </div>
+        <div class="next">5:00 PM — 9:00 PM</div>
+        <div class="meta">
+          <span>3 slots open</span>
+          <span>·</span>
+          <span>Walk-in welcome</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-marquee">
+    <div class="marquee-track">
+      <span class="marquee-item">Dry Needling <span class="sep"></span></span>
+      <span class="marquee-item">Kinesio Taping <span class="sep"></span></span>
+      <span class="marquee-item">Cupping Therapy <span class="sep"></span></span>
+      <span class="marquee-item">Sports Rehab <span class="sep"></span></span>
+      <span class="marquee-item">Manual Therapy <span class="sep"></span></span>
+      <span class="marquee-item">ANC-PNC Care <span class="sep"></span></span>
+      <span class="marquee-item">Pediatric Physio <span class="sep"></span></span>
+      <span class="marquee-item">Geriatric Care <span class="sep"></span></span>
+      <!-- duplicate -->
+      <span class="marquee-item">Dry Needling <span class="sep"></span></span>
+      <span class="marquee-item">Kinesio Taping <span class="sep"></span></span>
+      <span class="marquee-item">Cupping Therapy <span class="sep"></span></span>
+      <span class="marquee-item">Sports Rehab <span class="sep"></span></span>
+      <span class="marquee-item">Manual Therapy <span class="sep"></span></span>
+      <span class="marquee-item">ANC-PNC Care <span class="sep"></span></span>
+      <span class="marquee-item">Pediatric Physio <span class="sep"></span></span>
+      <span class="marquee-item">Geriatric Care <span class="sep"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOCTOR ============ -->
+<section class="doctor" id="about" data-screen-label="02 About">
+  <div class="container">
+    <div class="doctor-grid">
+      <div class="reveal doctor-portrait" style="background: linear-gradient(165deg, var(--teal-700), var(--teal-900)); overflow: hidden;">
+        <img src="assets/gallery/photo-3.png" alt="Dr. Renu Saroj at work" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.92; mix-blend-mode: luminosity; filter: brightness(0.85) contrast(1.05);" />
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(11, 46, 51, 0.85) 100%);"></div>
+        <span class="photo-label" style="z-index: 2;"></span>
+        <div class="placeholder-pattern" style="opacity: 0.3;"></div>
+        <svg viewBox="0 0 400 500" style="position: absolute; inset: 0; width: 100%; height: 100%;">
+          <!-- Decorative -->
+          <circle cx="200" cy="180" r="110" fill="var(--cream)" opacity="0.08"/>
+          <path d="M 200 80 C 170 130, 170 200, 200 260 C 230 320, 230 400, 200 460"
+                stroke="var(--copper)" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
+          <circle cx="195" cy="120" r="4" fill="var(--cream)"/>
+          <circle cx="200" cy="180" r="4" fill="var(--cream)"/>
+          <circle cx="210" cy="240" r="4" fill="var(--copper)"/>
+          <circle cx="220" cy="300" r="4" fill="var(--cream)"/>
+          <circle cx="215" cy="360" r="4" fill="var(--cream)"/>
+          <circle cx="205" cy="420" r="4" fill="var(--copper)"/>
+        </svg>
+      </div>
+
+      <div class="reveal">
+        <span class="section-eyebrow">The practitioner</span>
+        <h2 class="section-title">Care that listens. <em>Movement</em> that heals.</h2>
+
+        <p class="doctor-quote">
+          "Every body has a story. My role is to listen carefully, restore what's lost, and walk with you until movement feels like yours again."
+        </p>
+
+        <div class="doctor-creds">
+          <span class="cred-pill solid">BPT · Bachelor of Physiotherapy</span>
+          <span class="cred-pill">ANC-PNC Certified Coach</span>
+          <span class="cred-pill">Women's Health Specialist</span>
+          <span class="cred-pill">Dry Needling Certified</span>
+          <span class="cred-pill">Kinesio Taping Practitioner</span>
+          <span class="cred-pill">Cupping Therapy Certified</span>
+        </div>
+
+        <div class="doctor-meta">
+          <div class="meta-item">
+            <div class="k">Reg. No</div>
+            <div class="v">PT/012470</div>
+          </div>
+          <div class="meta-item">
+            <div class="k">Specialty</div>
+            <div class="v">Women's Health</div>
+          </div>
+          <div class="meta-item">
+            <div class="k">Approach</div>
+            <div class="v">Hands-on · Holistic</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPECIALIZATIONS ============ -->
+<section class="specializations" id="specializations" data-screen-label="03 Care">
+  <div class="container">
+    <div class="specs-head reveal">
+      <div>
+        <span class="section-eyebrow">Areas of care</span>
+        <h2 class="section-title">Six pillars of <em>specialised</em> physiotherapy.</h2>
+      </div>
+      <p class="section-subtitle right">
+        From sport injuries to post-surgical recovery, our practice meets you wherever your body needs us most.
+      </p>
+    </div>
+
+    <div class="specs-grid reveal">
+      <div class="spec-card">
+        <div class="spec-num">01 / Orthopedics</div>
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24"><path d="M6 4 L6 20 M6 4 L4 6 M6 4 L8 6 M18 4 L18 20 M18 4 L16 6 M18 4 L20 6 M6 12 L18 12"/></svg>
+        </div>
+        <h3 class="spec-title">Joint <em>&</em> bone care</h3>
+        <p class="spec-desc">Frozen shoulder, arthritis, fractures, post-surgical rehab. Hands-on assessment, individualized progressive plans.</p>
+        <div class="spec-link">Treatments offered <span class="arr">→</span></div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">02 / Neurological</div>
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 4 C 8 4, 6 7, 6 10 C 6 13, 8 14, 8 16 C 8 18, 10 20, 12 20 C 14 20, 16 18, 16 16 C 16 14, 18 13, 18 10 C 18 7, 16 4, 12 4 Z M12 4 L12 20"/></svg>
+        </div>
+        <h3 class="spec-title">Neuro <em>recovery</em></h3>
+        <p class="spec-desc">Stroke rehab, facial paralysis, spinal cord injuries. Function-led therapy that rebuilds neural pathways step by step.</p>
+        <div class="spec-link">Recovery programs <span class="arr">→</span></div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">03 / Sports</div>
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12 L21 12 M12 3 L12 21 M5 5 L19 19 M19 5 L5 19"/></svg>
+        </div>
+        <h3 class="spec-title">Sport <em>&</em> performance</h3>
+        <p class="spec-desc">Pre & post-surgical rehab, ligament injury, performance optimization. Return to play, stronger than before.</p>
+        <div class="spec-link">Athletic programs <span class="arr">→</span></div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">04 / Geriatrics</div>
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 4 L9 20 M9 4 L13 4 M13 4 L13 8 M13 8 L17 8 M9 12 L13 12 M9 20 L15 20"/></svg>
+        </div>
+        <h3 class="spec-title">Senior <em>mobility</em></h3>
+        <p class="spec-desc">Fall prevention, balance training, age-related stiffness. Gentle, consistent care to keep you independent for longer.</p>
+        <div class="spec-link">Care plans <span class="arr">→</span></div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">05 / Pediatrics</div>
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20 C 6 16, 9 14, 12 14 C 15 14, 18 16, 18 20"/></svg>
+        </div>
+        <h3 class="spec-title">Little <em>movers</em></h3>
+        <p class="spec-desc">Developmental delays, posture, sport injuries in children. Play-based therapy that grows with them.</p>
+        <div class="spec-link">Child programs <span class="arr">→</span></div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">06 / Women's Health</div>
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M12 15 L12 21 M9 19 L15 19"/></svg>
+        </div>
+        <h3 class="spec-title">Women's <em>wellness</em></h3>
+        <p class="spec-desc">ANC-PNC programs, pelvic floor, post-natal recovery. Compassionate care for every chapter of womanhood.</p>
+        <div class="spec-link">Women's programs <span class="arr">→</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MODALITIES ============ -->
+<section class="modalities" id="modalities" data-screen-label="04 Modalities">
+  <div class="container">
+    <div class="reveal" style="max-width: 760px;">
+      <span class="section-eyebrow">Signature modalities</span>
+      <h2 class="section-title">Modern technique, <em>thoughtfully</em> applied.</h2>
+      <p class="section-subtitle">Three certified modalities form the backbone of our hands-on care — each one chosen, never prescribed by default.</p>
+    </div>
+
+    <div class="mod-tabs reveal">
+      <div class="mod-tab-list" role="tablist">
+        <button class="mod-tab active" data-tab="dry">
+          <span class="num">M.01</span>
+          Dry Needling
+        </button>
+        <button class="mod-tab" data-tab="kinesio">
+          <span class="num">M.02</span>
+          Kinesio Taping
+        </button>
+        <button class="mod-tab" data-tab="cup">
+          <span class="num">M.03</span>
+          Cupping Therapy
+        </button>
+        <button class="mod-tab" data-tab="manual">
+          <span class="num">M.04</span>
+          Manual Therapy
+        </button>
+      </div>
+
+      <div class="mod-content">
+        <div class="mod-panel active" data-panel="dry">
+          <div>
+            <h3>Trigger-point release through <em>precision</em> needling.</h3>
+            <p>Sterile filament needles inserted into myofascial trigger points — a clinical, evidence-based way to release deep muscular tension that manual therapy alone can't reach.</p>
+            <ul class="mod-bullets">
+              <li>Releases stubborn knots and chronic tension patterns</li>
+              <li>Targets sciatica, neck pain, frozen shoulder, plantar fasciitis</li>
+              <li>Single-use sterile needles, fully certified protocol</li>
+              <li>Visible relief usually within 24-48 hours</li>
+            </ul>
+            <div class="mod-stats">
+              <div class="mod-stat"><div class="v">15min</div><div class="l">Avg session</div></div>
+              <div class="mod-stat"><div class="v">87%</div><div class="l">Reported relief</div></div>
+            </div>
+          </div>
+          <div class="mod-visual">
+            <span class="label">M.01 / DRY NEEDLING</span>
+            <svg viewBox="0 0 300 380">
+              <circle cx="150" cy="180" r="100" fill="none" stroke="var(--copper)" stroke-width="1" opacity="0.3"/>
+              <circle cx="150" cy="180" r="60" fill="var(--copper)" opacity="0.15"/>
+              <line x1="80" y1="100" x2="220" y2="240" stroke="var(--copper)" stroke-width="1.5" opacity="0.6"/>
+              <line x1="100" y1="80" x2="240" y2="220" stroke="var(--copper)" stroke-width="1.5" opacity="0.4"/>
+              <circle cx="150" cy="180" r="5" fill="var(--copper)"/>
+              <circle cx="120" cy="150" r="3" fill="var(--teal-300)"/>
+              <circle cx="180" cy="210" r="3" fill="var(--teal-300)"/>
+              <circle cx="200" cy="140" r="3" fill="var(--teal-300)"/>
+              <text x="150" y="350" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="var(--teal-300)" letter-spacing="2">PRECISION · RELEASE</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="mod-panel" data-panel="kinesio">
+          <div>
+            <h3>Movement <em>support</em> without restriction.</h3>
+            <p>Elastic therapeutic tape applied along muscles and joints — supports movement, decreases inflammation, and lets you stay active through recovery instead of immobile.</p>
+            <ul class="mod-bullets">
+              <li>Reduces swelling and lymphatic congestion</li>
+              <li>Supports posture and movement patterns</li>
+              <li>Hypoallergenic, water-resistant — wear up to 5 days</li>
+              <li>Used widely by Olympic and pro-level athletes</li>
+            </ul>
+            <div class="mod-stats">
+              <div class="mod-stat"><div class="v">3-5</div><div class="l">Days of wear</div></div>
+              <div class="mod-stat"><div class="v">24/7</div><div class="l">Active support</div></div>
+            </div>
+          </div>
+          <div class="mod-visual">
+            <span class="label">M.02 / KINESIO TAPING</span>
+            <svg viewBox="0 0 300 380">
+              <rect x="60" y="80" width="40" height="220" rx="20" fill="var(--copper)" opacity="0.6" transform="rotate(-15 80 190)"/>
+              <rect x="200" y="80" width="40" height="220" rx="20" fill="var(--teal-300)" opacity="0.6" transform="rotate(15 220 190)"/>
+              <rect x="130" y="120" width="40" height="180" rx="20" fill="var(--cream)" opacity="0.4"/>
+              <text x="150" y="350" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="var(--teal-300)" letter-spacing="2">SUPPORT · MOVEMENT</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="mod-panel" data-panel="cup">
+          <div>
+            <h3>Ancient method, <em>modern</em> evidence.</h3>
+            <p>Suction cups draw blood flow to specific regions — releasing deep fascia, breaking adhesions, and easing chronic muscular pain. Particularly effective for back, neck, and IT-band tension.</p>
+            <ul class="mod-bullets">
+              <li>Releases fascial restrictions and adhesions</li>
+              <li>Improves localized blood flow and tissue oxygenation</li>
+              <li>Especially helpful for chronic back & shoulder pain</li>
+              <li>Combines beautifully with dry needling sessions</li>
+            </ul>
+            <div class="mod-stats">
+              <div class="mod-stat"><div class="v">20min</div><div class="l">Per session</div></div>
+              <div class="mod-stat"><div class="v">5K+</div><div class="l">Years tested</div></div>
+            </div>
+          </div>
+          <div class="mod-visual">
+            <span class="label">M.03 / CUPPING</span>
+            <svg viewBox="0 0 300 380">
+              <circle cx="100" cy="120" r="28" fill="var(--copper)" opacity="0.7"/>
+              <circle cx="180" cy="160" r="28" fill="var(--copper)" opacity="0.5"/>
+              <circle cx="120" cy="220" r="28" fill="var(--copper)" opacity="0.6"/>
+              <circle cx="200" cy="260" r="28" fill="var(--copper)" opacity="0.4"/>
+              <circle cx="100" cy="120" r="14" fill="var(--teal-900)"/>
+              <circle cx="180" cy="160" r="14" fill="var(--teal-900)"/>
+              <circle cx="120" cy="220" r="14" fill="var(--teal-900)"/>
+              <circle cx="200" cy="260" r="14" fill="var(--teal-900)"/>
+              <text x="150" y="350" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="var(--teal-300)" letter-spacing="2">DEEP · RELEASE</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="mod-panel" data-panel="manual">
+          <div>
+            <h3>The skill of <em>hands</em> on tissue.</h3>
+            <p>Joint mobilization, soft-tissue work, myofascial release — the foundation of physiotherapy, refined through years of practice. Often the only modality you need.</p>
+            <ul class="mod-bullets">
+              <li>Restores joint mobility and tissue glide</li>
+              <li>Identifies issues other tests miss</li>
+              <li>Drug-free, immediate, deeply restorative</li>
+              <li>Tailored pressure — never one-size-fits-all</li>
+            </ul>
+            <div class="mod-stats">
+              <div class="mod-stat"><div class="v">45min</div><div class="l">Avg session</div></div>
+              <div class="mod-stat"><div class="v">100%</div><div class="l">Personalized</div></div>
+            </div>
+          </div>
+          <div class="mod-visual">
+            <span class="label">M.04 / MANUAL THERAPY</span>
+            <svg viewBox="0 0 300 380">
+              <ellipse cx="150" cy="180" rx="100" ry="50" fill="none" stroke="var(--copper)" stroke-width="1" opacity="0.3"/>
+              <ellipse cx="150" cy="180" rx="80" ry="40" fill="none" stroke="var(--teal-300)" stroke-width="1" opacity="0.4"/>
+              <ellipse cx="150" cy="180" rx="60" ry="30" fill="none" stroke="var(--cream)" stroke-width="1" opacity="0.5"/>
+              <ellipse cx="150" cy="180" rx="40" ry="20" fill="var(--copper)" opacity="0.6"/>
+              <text x="150" y="350" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="var(--teal-300)" letter-spacing="2">HANDS · ON · BODY</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WOMEN'S HEALTH ============ -->
+<section class="womens" id="womens" data-screen-label="05 Women's Health">
+  <div class="womens-decor"></div>
+  <div class="womens-decor two"></div>
+
+  <div class="container">
+    <div class="womens-grid">
+      <div class="reveal">
+        <div class="womens-image">
+          <div class="womens-badge">
+            <div class="h">For her,</div>
+            <div class="sub">Through every chapter</div>
+            <div class="lines"></div>
+            <div class="body-num">9</div>
+            <div class="body-lab">Months of care</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <span class="section-eyebrow">ANC · PNC · Women's Health</span>
+        <h2 class="section-title">Care for the <em>woman</em>, not just the patient.</h2>
+        <p class="section-subtitle">As an ANC-PNC certified coach and Women's Health specialist, Dr. Renu offers structured programs designed around the unique needs of pregnancy, postpartum, and beyond.</p>
+
+        <div class="program-cards">
+          <div class="program-card">
+            <div class="tag">Antenatal · ANC</div>
+            <h4>Pregnancy preparation</h4>
+            <p>Gentle strengthening, breathing, posture and pelvic-floor preparation across all three trimesters.</p>
+            <div class="duration"><span>9 months</span><span>Weekly · 45 min</span></div>
+          </div>
+          <div class="program-card">
+            <div class="tag">Postnatal · PNC</div>
+            <h4>Postpartum recovery</h4>
+            <p>Diastasis-recti correction, pelvic-floor restoration, and gradual return-to-fitness programming.</p>
+            <div class="duration"><span>12 weeks</span><span>2× weekly</span></div>
+          </div>
+          <div class="program-card">
+            <div class="tag">Pelvic Health</div>
+            <h4>Pelvic floor therapy</h4>
+            <p>For incontinence, prolapse, and pelvic pain — discreet, evidence-based, deeply effective.</p>
+            <div class="duration"><span>6-8 sessions</span><span>Tailored</span></div>
+          </div>
+          <div class="program-card">
+            <div class="tag">Hormonal · Wellness</div>
+            <h4>Menopause & beyond</h4>
+            <p>Bone density, joint flexibility, energy management — physiotherapy support for every transition.</p>
+            <div class="duration"><span>Ongoing</span><span>Monthly</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOURNEY ============ -->
+<section class="journey" id="journey">
+  <div class="container">
+    <div class="reveal" style="max-width: 700px;">
+      <span class="section-eyebrow">The healing journey</span>
+      <h2 class="section-title">Four steps. <em>One</em> goal — yours.</h2>
+    </div>
+
+    <div class="journey-track reveal">
+      <div class="journey-grid">
+        <div class="journey-step">
+          <div class="journey-num">01</div>
+          <h4>Listen</h4>
+          <p>A 60-minute consultation where we map your story, history, and what your body needs us to hear.</p>
+          <div class="dur">First visit · 60 min</div>
+        </div>
+        <div class="journey-step">
+          <div class="journey-num">02</div>
+          <h4>Assess</h4>
+          <p>Hands-on evaluation, movement screening, and gait analysis — followed by a clear written plan.</p>
+          <div class="dur">Same session</div>
+        </div>
+        <div class="journey-step">
+          <div class="journey-num">03</div>
+          <h4>Restore</h4>
+          <p>Treatment sessions blending manual therapy, the right modalities, and active progressive exercise.</p>
+          <div class="dur">4-12 sessions</div>
+        </div>
+        <div class="journey-step">
+          <div class="journey-num">04</div>
+          <h4>Sustain</h4>
+          <p>Home programming, posture habits, and check-in cadence so the gains hold long after you graduate.</p>
+          <div class="dur">Lifelong cadence</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="reveal" style="max-width: 700px;">
+      <span class="section-eyebrow">Patient stories</span>
+      <h2 class="section-title">Words from <em>those</em> who returned to themselves.</h2>
+    </div>
+
+    <div class="test-track reveal">
+      <div class="test-grid" id="testGrid">
+        <!-- populated by JS -->
+      </div>
+      <div class="test-controls">
+        <div class="test-dots" id="testDots"></div>
+        <div class="test-arrows">
+          <button class="test-arrow" id="testPrev">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18 L9 12 L15 6"/></svg>
+          </button>
+          <button class="test-arrow" id="testNext">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18 L15 12 L9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOKING ============ -->
+<section class="booking" id="booking" data-screen-label="06 Booking">
+  <div class="container">
+    <div class="booking-grid">
+      <div class="booking-info reveal">
+        <span class="section-eyebrow">Begin your visit</span>
+        <h2 class="section-title">Reserve a moment to <em>arrive</em>.</h2>
+        <p class="quote-large">"Healing begins the moment you decide your body is worth listening to."</p>
+
+        <ul class="booking-features">
+          <li>
+            <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12 L10 17 L20 7"/></svg></span>
+            Personal, unhurried first consultation
+          </li>
+          <li>
+            <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12 L10 17 L20 7"/></svg></span>
+            Walk-in slots and flexible rescheduling
+          </li>
+          <li>
+            <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12 L10 17 L20 7"/></svg></span>
+            Female practitioner — comfortable for everyone
+          </li>
+          <li>
+            <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12 L10 17 L20 7"/></svg></span>
+            Insurance & corporate paperwork supported
+          </li>
+        </ul>
+      </div>
+
+      <div class="booking-card reveal" id="bookingCard">
+        <div class="step-tracker">
+          <div class="step-pill active" data-step="1"></div>
+          <div class="step-pill" data-step="2"></div>
+          <div class="step-pill" data-step="3"></div>
+          <div class="step-pill" data-step="4"></div>
+        </div>
+        <div class="step-info">
+          <span>Step <span id="stepNum">1</span> of 4</span>
+          <span class="current" id="stepName">Choose service</span>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="step-panel active" data-step="1">
+          <h3 class="step-h">What brings you in?</h3>
+          <p class="step-sub">Pick the closest match — Dr. Renu will refine during consultation.</p>
+          <div class="service-options">
+            <div class="svc-opt" data-service="initial" data-price="1200">
+              <div class="name">Initial Consultation</div>
+              <div class="duration">60 min · Assessment + plan</div>
+              <div class="price">₹1,200</div>
+            </div>
+            <div class="svc-opt" data-service="orthopedic" data-price="900">
+              <div class="name">Orthopedic Session</div>
+              <div class="duration">45 min · Manual + exercise</div>
+              <div class="price">₹900</div>
+            </div>
+            <div class="svc-opt" data-service="dry" data-price="1100">
+              <div class="name">Dry Needling</div>
+              <div class="duration">30 min · Trigger-point release</div>
+              <div class="price">₹1,100</div>
+            </div>
+            <div class="svc-opt" data-service="cupping" data-price="800">
+              <div class="name">Cupping Therapy</div>
+              <div class="duration">25 min · Fascial release</div>
+              <div class="price">₹800</div>
+            </div>
+            <div class="svc-opt" data-service="anc" data-price="1000">
+              <div class="name">ANC / PNC</div>
+              <div class="duration">50 min · Women's program</div>
+              <div class="price">₹1,000</div>
+            </div>
+            <div class="svc-opt" data-service="sports" data-price="1100">
+              <div class="name">Sports Rehab</div>
+              <div class="duration">60 min · Performance focus</div>
+              <div class="price">₹1,100</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-panel" data-step="2">
+          <h3 class="step-h">When would you like to come?</h3>
+          <p class="step-sub">Closed Sundays. Morning 10–1 PM, evening 5–9 PM.</p>
+          <div class="date-grid" id="dateGrid"></div>
+          <div class="time-section">
+            <h5>Morning · 10:00 AM – 1:00 PM</h5>
+            <div class="time-grid" id="timeGridMorning"></div>
+          </div>
+          <div class="time-section">
+            <h5>Evening · 5:00 PM – 9:00 PM</h5>
+            <div class="time-grid" id="timeGridEvening"></div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-panel" data-step="3">
+          <h3 class="step-h">A few details</h3>
+          <p class="step-sub">So we can prepare for your visit.</p>
+          <div class="field-row">
+            <div class="field">
+              <label>Full name</label>
+              <input type="text" id="fName" placeholder="Your name" />
+            </div>
+            <div class="field">
+              <label>Phone</label>
+              <input type="tel" id="fPhone" placeholder="+91 ..." />
+            </div>
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" id="fEmail" placeholder="you@email.com" />
+          </div>
+          <div class="field">
+            <label>What's bringing you in? (optional)</label>
+            <textarea id="fNotes" rows="3" placeholder="Pain in lower back for 3 weeks, pregnant in 2nd trimester, etc."></textarea>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Age</label>
+              <input type="number" id="fAge" placeholder="32" />
+            </div>
+            <div class="field">
+              <label>How did you hear?</label>
+              <select id="fSource">
+                <option>Google search</option>
+                <option>Instagram / Social</option>
+                <option>Friend / Family</option>
+                <option>Walk-by clinic</option>
+                <option>Doctor referral</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step-panel" data-step="4">
+          <div class="confirm-card">
+            <div class="confirm-illust">
+              <svg viewBox="0 0 48 48" fill="none" stroke-width="2.5"><path d="M10 24 L20 34 L40 14"/></svg>
+            </div>
+            <h3 class="step-h" style="text-align: center;">You're booked.</h3>
+            <p class="step-sub" style="text-align: center;">Confirmation sent — Dr. Renu looks forward to seeing you.</p>
+          </div>
+
+          <div class="summary">
+            <div class="sum-row"><span class="l">Service</span><span class="v" id="sumService">—</span></div>
+            <div class="sum-row"><span class="l">Date</span><span class="v" id="sumDate">—</span></div>
+            <div class="sum-row"><span class="l">Time</span><span class="v" id="sumTime">—</span></div>
+            <div class="sum-row"><span class="l">Patient</span><span class="v" id="sumName">—</span></div>
+            <div class="sum-row total"><span class="l">Visit fee</span><span class="v" id="sumPrice">—</span></div>
+          </div>
+
+          <p style="text-align: center; font-size: 13px; color: var(--muted);">
+            Reschedule any time at <strong style="color: var(--teal-800);">+91 9324474278</strong>
+          </p>
+        </div>
+
+        <div class="step-actions">
+          <button class="btn-back" id="btnBack" style="visibility: hidden;">← Back</button>
+          <button class="btn-next" id="btnNext">Choose date <span>→</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery" id="gallery" data-screen-label="07 Gallery" style="background: var(--paper);">
+  <div class="container">
+    <div class="reveal" style="max-width: 720px; margin-bottom: 60px;">
+      <span class="section-eyebrow">Inside the clinic</span>
+      <h2 class="section-title">A space designed for <em>healing</em>.</h2>
+      <p class="section-subtitle">Modern equipment, calming interiors, and an atmosphere built around your comfort.</p>
+    </div>
+
+    <div class="gallery-grid reveal" id="galleryGrid">
+      <!-- Drop photos in /assets/gallery/ named photo-1.jpg through photo-6.jpg to fill these slots -->
+      <div class="gal-cell" style="grid-row: span 2;" data-img="assets/gallery/photo-4.png">
+        <img src="assets/gallery/photo-4.png" alt="AlignAsya clinic interior" />
+        <span class="gal-label">CLINIC SPACE</span>
+      </div>
+      <div class="gal-cell" data-img="assets/gallery/photo-3.png">
+        <img src="assets/gallery/photo-3.png" alt="Therapy session" />
+        <span class="gal-label">WOMEN'S HEALTH</span>
+      </div>
+      <div class="gal-cell" data-img="assets/gallery/photo-1.png">
+        <img src="assets/gallery/photo-1.png" alt="Sports rehab" />
+        <span class="gal-label">SPORTS REHAB</span>
+      </div>
+      <div class="gal-cell" style="grid-column: span 2;" data-img="assets/gallery/photo-2.png">
+        <img src="assets/gallery/photo-2.png" alt="Manual therapy" />
+        <span class="gal-label">MANUAL THERAPY</span>
+      </div>
+      <div class="gal-cell" data-img="assets/gallery/photo-6.png">
+        <img src="assets/gallery/photo-6.png" alt="Kinesio taping" />
+        <span class="gal-label">KINESIO TAPING</span>
+      </div>
+      <div class="gal-cell" data-img="assets/gallery/photo-5.png" style="background: var(--cream);">
+        <img src="assets/gallery/photo-5.png" alt="Therapy session" style="object-fit: contain; padding: 20px;" />
+        <span class="gal-label">THERAPY SESSION</span>
+      </div>
+      <div class="gal-cell" data-img="assets/gallery/photo-7.png" style="background: var(--cream);">
+        <img src="assets/gallery/photo-7.png" alt="Pediatric care" style="object-fit: contain; padding: 20px" />
+        <span class="gal-label">PEDIATRIC CARE</span>
+      </div>
+      <div class="gal-cell" style="grid-column: span 2; background: var(--cream);" data-img="assets/gallery/photo-8.png">
+        <img src="assets/gallery/photo-8.png" alt="Neuro rehab" style="object-fit: contain; padding: 20px;" />
+        <span class="gal-label">NEURO REHAB</span>
+      </div>
+    </div>
+
+  </div>
+
+  <style>
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 240px;
+      gap: 16px;
+    }
+    .gal-cell {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--cream), var(--green-300));
+      box-shadow: 0 12px 32px -16px rgba(15, 79, 99, 0.25);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .gal-cell:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -16px rgba(15, 79, 99, 0.35); }
+    .gal-cell img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+    .gal-cell:hover img { transform: scale(1.05); }
+    .gal-cell.placeholder {
+      background-image:
+        repeating-linear-gradient(45deg, transparent 0, transparent 14px, rgba(27,122,152,0.08) 14px, rgba(27,122,152,0.08) 15px),
+        linear-gradient(135deg, var(--cream) 0%, var(--green-300) 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .gal-cell.placeholder::before {
+      content: 'DROP PHOTO HERE';
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.18em; color: var(--teal-700);
+      opacity: 0.6;
+    }
+    .gal-label {
+      position: absolute; bottom: 16px; left: 18px;
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: 0.15em; color: var(--cream);
+      background: rgba(15, 79, 99, 0.7);
+      padding: 6px 12px; border-radius: 100px;
+      backdrop-filter: blur(8px);
+    }
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
+      .gal-cell[style*="span 2"] { grid-column: span 2 !important; grid-row: auto !important; }
+    }
+  </style>
+</section>
+
+<!-- ============ HOURS ============ -->
+<section class="hours" id="visit" data-screen-label="07 Visit">
+  <div class="container">
+    <div class="hours-grid">
+      <div class="hours-block reveal">
+        <span class="section-eyebrow">Visiting hours</span>
+        <h2 class="section-title">Open when you <em>need</em> us.</h2>
+
+        <div class="hours-table" id="hoursTable">
+          <!-- populated by JS to highlight today -->
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="contact-card">
+          <h3>Reach the <em>clinic</em>.</h3>
+          <div class="contact-list">
+            <div class="contact-row">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M5 4 L9 4 L11 9 L8 11 C9 14, 10 15, 13 16 L15 13 L20 15 L20 19 C20 20, 19 20, 18 20 C10 20, 4 14, 4 6 C 4 5, 4 4, 5 4 Z"/></svg>
+              </div>
+              <div>
+                <div class="k">Phone & WhatsApp</div>
+                <a class="v" href="tel:+919324474278">+91 93244 74278</a>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 8 L12 14 L21 8"/></svg>
+              </div>
+              <div>
+                <div class="k">Email</div>
+                <a class="v" href="mailto:info@alignasya.com">info@alignasya.com</a>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 21 C 18 14, 20 11, 20 8 C 20 4, 16 2, 12 2 C 8 2, 4 4, 4 8 C 4 11, 6 14, 12 21 Z"/><circle cx="12" cy="8" r="3"/></svg>
+              </div>
+              <div>
+                <div class="k">Clinic address</div>
+                <a class="v" href="#">AlignAsya Physiotherapy & Wellness Center</a>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12 L21 12 M12 3 C 15 7, 15 17, 12 21 C 9 17, 9 7, 12 3 Z"/></svg>
+              </div>
+              <div>
+                <div class="k">Online</div>
+                <a class="v" href="https://www.alignasya.com">www.alignasya.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo" style="background: var(--paper); padding: 14px 22px; border-radius: 14px; display: inline-flex; box-shadow: 0 8px 24px -12px rgba(0,0,0,0.3);">
+          <img src="assets/alignasya-logo.jpg" alt="AlignAsya" style="height: 56px; width: auto; mix-blend-mode: multiply;" />
+        </div>
+        <div style="height: 28px;"></div>
+        <p>A modern physiotherapy and wellness sanctuary led by Dr. Renu Saroj. Healing movement, restoring life — one body at a time.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Care</h5>
+        <ul>
+          <li><a href="#specializations">Orthopedics</a></li>
+          <li><a href="#specializations">Neurological</a></li>
+          <li><a href="#specializations">Sports Rehab</a></li>
+          <li><a href="#specializations">Geriatric</a></li>
+          <li><a href="#specializations">Pediatric</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Modalities</h5>
+        <ul>
+          <li><a href="#modalities">Dry Needling</a></li>
+          <li><a href="#modalities">Kinesio Taping</a></li>
+          <li><a href="#modalities">Cupping</a></li>
+          <li><a href="#modalities">Manual Therapy</a></li>
+          <li><a href="#womens">Women's Health</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Visit</h5>
+        <ul>
+          <li><a href="#booking">Book consultation</a></li>
+          <li><a href="#visit">Hours & contact</a></li>
+          <li><a href="tel:+919324474278">+91 93244 74278</a></li>
+          <li><a href="mailto:info@alignasya.com">info@alignasya.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AlignAsya Physiotherapy & Wellness Center · Reg. PT/012470</span>
+      <div class="right">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Insurance Partners</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/919324474278" target="_blank" aria-label="Chat on WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.5 14.4 C 17.2 14.3, 15.7 13.6, 15.5 13.5 C 15.2 13.4, 15 13.4, 14.8 13.7 C 14.6 14, 14 14.6, 13.9 14.8 C 13.7 15, 13.5 15, 13.3 14.9 C 12.5 14.5, 11.7 14, 11 13.3 C 10.4 12.7, 9.9 12, 9.5 11.3 C 9.4 11.1, 9.5 10.9, 9.6 10.8 C 9.7 10.7, 9.9 10.5, 10 10.3 C 10.1 10.2, 10.2 10, 10.2 9.9 C 10.3 9.7, 10.3 9.6, 10.2 9.5 C 10.1 9.4, 9.6 8.1, 9.3 7.5 C 9.1 7, 8.9 7, 8.7 7 L 8.2 7 C 8 7, 7.7 7.1, 7.5 7.4 C 6.7 8.2, 6.7 9.7, 7.7 11.1 C 9.4 13.4, 11 14.6, 13.4 15.6 C 14.5 16, 15.4 16, 16.1 15.9 C 16.9 15.8, 17.9 15.2, 18.2 14.5 C 18.5 13.8, 18.5 13.2, 18.4 13.1 C 18.3 12.9, 18.1 12.8, 17.5 14.4 Z M 12 2 C 6.5 2, 2 6.5, 2 12 C 2 13.7, 2.4 15.3, 3.2 16.7 L 2 22 L 7.4 20.7 C 8.8 21.5, 10.4 21.9, 12 21.9 C 17.5 21.9, 22 17.4, 22 11.9 C 22 9.3, 21 6.8, 19.1 4.9 C 17.2 3, 14.7 2, 12 2 Z"/>
+  </svg>
+</a>
+
+<script>
+// ===== Scroll nav =====
+const nav = document.getElementById('topnav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ===== Reveal animation =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+reveals.forEach(r => io.observe(r));
+
+// ===== Modalities tabs =====
+document.querySelectorAll('.mod-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.mod-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.mod-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelector(`.mod-panel[data-panel="${tab.dataset.tab}"]`).classList.add('active');
+  });
+});
+
+// ===== Testimonials =====
+const testimonials = [
+  { quote: "Six months of frozen shoulder gone in five sessions. Dr. Renu doesn't just treat — she educates.", name: "Anjali M.", role: "Teacher · Andheri", initial: "A" },
+  { quote: "She walked me through pregnancy and postpartum like a coach, not just a therapist. I felt held.", name: "Pooja S.", role: "New mother · Bandra", initial: "P" },
+  { quote: "After my ACL surgery, I doubted I'd run again. Today I'm back to half-marathons.", name: "Rohan K.", role: "Marathon runner", initial: "R" },
+  { quote: "My 78-year-old mother walks confidently again. The geriatric care here is exceptional.", name: "Vikas T.", role: "Son of patient", initial: "V" },
+  { quote: "The dry needling worked when nothing else did. Sciatica relief in two visits.", name: "Sneha P.", role: "Designer · Powai", initial: "S" },
+  { quote: "She listens. That alone is worth the visit. The healing is the bonus.", name: "Meera D.", role: "Yoga instructor", initial: "M" },
+];
+const grid = document.getElementById('testGrid');
+const dots = document.getElementById('testDots');
+let testPage = 0;
+const perPage = 3;
+const totalPages = Math.ceil(testimonials.length / perPage);
+
+function renderTests() {
+  grid.innerHTML = '';
+  const start = testPage * perPage;
+  const items = testimonials.slice(start, start + perPage);
+  items.forEach(t => {
+    grid.innerHTML += `
+      <div class="test-card">
+        <div class="test-stars">
+          ${'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14.5 8.5 L21.5 9 L16 14 L17.5 21 L12 17 L6.5 21 L8 14 L2.5 9 L9.5 8.5 Z"/></svg>'.repeat(5)}
+        </div>
+        <p class="test-quote">${t.quote}</p>
+        <div class="test-meta">
+          <div class="avatar">${t.initial}</div>
+          <div>
+            <div class="name">${t.name}</div>
+            <div class="role">${t.role}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+  dots.innerHTML = '';
+  for (let i = 0; i < totalPages; i++) {
+    const d = document.createElement('button');
+    d.className = 'test-dot' + (i === testPage ? ' active' : '');
+    d.addEventListener('click', () => { testPage = i; renderTests(); });
+    dots.appendChild(d);
+  }
+}
+document.getElementById('testPrev').addEventListener('click', () => { testPage = (testPage - 1 + totalPages) % totalPages; renderTests(); });
+document.getElementById('testNext').addEventListener('click', () => { testPage = (testPage + 1) % totalPages; renderTests(); });
+renderTests();
+
+// auto-rotate
+setInterval(() => { testPage = (testPage + 1) % totalPages; renderTests(); }, 8000);
+
+// ===== Booking flow =====
+const state = {
+  step: 1,
+  service: null,
+  serviceLabel: null,
+  price: null,
+  date: null,
+  time: null,
+  name: '', phone: '', email: '', notes: '', age: '', source: ''
+};
+const stepNames = { 1: 'Choose service', 2: 'Pick date & time', 3: 'Your details', 4: 'Confirmed' };
+
+function updateBookingUI() {
+  document.querySelectorAll('.step-panel').forEach(p => {
+    p.classList.toggle('active', parseInt(p.dataset.step) === state.step);
+  });
+  document.querySelectorAll('.step-pill').forEach(p => {
+    const s = parseInt(p.dataset.step);
+    p.classList.toggle('active', s === state.step);
+    p.classList.toggle('done', s < state.step);
+  });
+  document.getElementById('stepNum').textContent = state.step;
+  document.getElementById('stepName').textContent = stepNames[state.step];
+  document.getElementById('btnBack').style.visibility = state.step === 1 || state.step === 4 ? 'hidden' : 'visible';
+  const next = document.getElementById('btnNext');
+  if (state.step === 4) {
+    next.innerHTML = 'Book another visit <span>→</span>';
+  } else if (state.step === 3) {
+    next.innerHTML = 'Confirm booking <span>→</span>';
+  } else if (state.step === 2) {
+    next.innerHTML = 'Add your details <span>→</span>';
+  } else {
+    next.innerHTML = 'Choose date <span>→</span>';
+  }
+  next.disabled = !canAdvance();
+  next.style.opacity = canAdvance() ? '1' : '0.4';
+}
+function canAdvance() {
+  if (state.step === 1) return !!state.service;
+  if (state.step === 2) return !!state.date && !!state.time;
+  if (state.step === 3) return state.name.trim() && state.phone.trim();
+  return true;
+}
+
+// Step 1 — services
+document.querySelectorAll('.svc-opt').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('.svc-opt').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    state.service = opt.dataset.service;
+    state.serviceLabel = opt.querySelector('.name').textContent;
+    state.price = parseInt(opt.dataset.price);
+    updateBookingUI();
+  });
+});
+
+// Step 2 — date grid (next 14 days, skip Sundays for available)
+const dateGrid = document.getElementById('dateGrid');
+const today = new Date();
+const dows = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+for (let i = 0; i < 14; i++) {
+  const d = new Date(today); d.setDate(today.getDate() + i);
+  const isSun = d.getDay() === 0;
+  const btn = document.createElement('button');
+  btn.className = 'date-btn';
+  btn.disabled = isSun;
+  btn.dataset.date = d.toISOString().split('T')[0];
+  btn.dataset.label = d.toLocaleDateString('en-IN', { weekday:'short', day:'numeric', month:'short' });
+  btn.innerHTML = `<span class="dow">${dows[d.getDay()]}</span><span class="day">${d.getDate()}</span>`;
+  btn.addEventListener('click', () => {
+    if (btn.disabled) return;
+    document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    state.date = btn.dataset.label;
+    updateBookingUI();
+  });
+  dateGrid.appendChild(btn);
+}
+
+// time slots
+const morn = ['10:00', '10:45', '11:30', '12:15'];
+const eve = ['5:00', '5:45', '6:30', '7:15', '8:00', '8:45'];
+const taken = new Set(['11:30', '6:30']);
+function buildTimeGrid(arr, container, suffix) {
+  arr.forEach(t => {
+    const b = document.createElement('button');
+    b.className = 'time-btn' + (taken.has(t) ? ' taken' : '');
+    b.textContent = t + ' ' + suffix;
+    if (!taken.has(t)) {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('.time-btn').forEach(x => x.classList.remove('selected'));
+        b.classList.add('selected');
+        state.time = t + ' ' + suffix;
+        updateBookingUI();
+      });
+    }
+    container.appendChild(b);
+  });
+}
+buildTimeGrid(morn, document.getElementById('timeGridMorning'), 'AM');
+buildTimeGrid(eve, document.getElementById('timeGridEvening'), 'PM');
+
+// Step 3 inputs
+['fName','fPhone','fEmail','fNotes','fAge','fSource'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener('input', () => {
+    const k = id.slice(1).toLowerCase();
+    state[k === 'name' ? 'name' : k === 'phone' ? 'phone' : k === 'email' ? 'email' : k === 'notes' ? 'notes' : k === 'age' ? 'age' : 'source'] = el.value;
+    updateBookingUI();
+  });
+});
+
+// Nav buttons
+document.getElementById('btnNext').addEventListener('click', () => {
+  if (!canAdvance()) return;
+  if (state.step === 4) {
+    // restart
+    state.step = 1; state.service = null; state.date = null; state.time = null;
+    document.querySelectorAll('.svc-opt, .date-btn, .time-btn').forEach(b => b.classList.remove('selected'));
+    document.querySelectorAll('input,textarea').forEach(i => i.value = '');
+    state.name = ''; state.phone = ''; state.email = ''; state.notes = ''; state.age = '';
+  } else {
+    state.step++;
+    if (state.step === 4) {
+      document.getElementById('sumService').textContent = state.serviceLabel;
+      document.getElementById('sumDate').textContent = state.date;
+      document.getElementById('sumTime').textContent = state.time;
+      document.getElementById('sumName').textContent = state.name;
+      document.getElementById('sumPrice').textContent = '₹' + state.price.toLocaleString('en-IN');
+    }
+  }
+  updateBookingUI();
+});
+document.getElementById('btnBack').addEventListener('click', () => {
+  if (state.step > 1) state.step--;
+  updateBookingUI();
+});
+updateBookingUI();
+
+// ===== Hours table — highlight today =====
+const hours = [
+  { day: 'Monday', times: '10:00 – 1:00 PM · 5:00 – 9:00 PM', open: true },
+  { day: 'Tuesday', times: '10:00 – 1:00 PM · 5:00 – 9:00 PM', open: true },
+  { day: 'Wednesday', times: '10:00 – 1:00 PM · 5:00 – 9:00 PM', open: true },
+  { day: 'Thursday', times: '10:00 – 1:00 PM · 5:00 – 9:00 PM', open: true },
+  { day: 'Friday', times: '10:00 – 1:00 PM · 5:00 – 9:00 PM', open: true },
+  { day: 'Saturday', times: '10:00 – 1:00 PM · 5:00 – 9:00 PM', open: true },
+  { day: 'Sunday', times: 'Closed', open: false },
+];
+const todayIdx = (new Date().getDay() + 6) % 7; // Mon=0
+const ht = document.getElementById('hoursTable');
+hours.forEach((h, i) => {
+  ht.innerHTML += `
+    <div class="hour-row ${i === todayIdx ? 'today' : ''} ${!h.open ? 'closed' : ''}">
+      <div class="day">${h.day}</div>
+      <div class="times">${h.times}</div>
+      <div class="status">${i === todayIdx ? 'Today' : (h.open ? 'Open' : 'Closed')}</div>
+    </div>
+  `;
+});
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>
