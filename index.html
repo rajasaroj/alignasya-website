@@ -209,6 +209,7 @@
   .hero-visual {
     position: relative;
     height: 580px;
+    min-width: 380px;
   }
   .hero-card {
     position: absolute;
@@ -216,10 +217,12 @@
     border-radius: 16px;
     box-shadow: 0 20px 50px -20px rgba(15, 61, 68, 0.25);
     overflow: hidden;
+    z-index: 2;
   }
   .hero-portrait {
-    width: 360px; height: 460px;
-    top: 30px; right: 40px;
+    width: 320px; height: 420px;
+    top: 50px; right: 30px;
+    z-index: 1;
     border-radius: 240px 240px 16px 16px;
     background: linear-gradient(160deg, var(--teal-700) 0%, var(--teal-800) 50%, var(--teal-900) 100%);
     display: flex; align-items: flex-end; justify-content: center;
@@ -245,7 +248,7 @@
     padding: 18px 22px;
     display: flex; align-items: center; gap: 14px;
     border-radius: 100px;
-    bottom: 110px; left: -10px;
+    bottom: 140px; left: 0px;
     border: 1px solid var(--line-soft);
   }
   .tag-icon {
@@ -258,7 +261,7 @@
   .tag-text span { font-size: 11px; color: var(--muted); }
 
   .hero-card.live {
-    bottom: 30px; right: -20px;
+    bottom: 20px; right: 0px;
     padding: 16px 20px;
     border-radius: 14px;
     display: flex; flex-direction: column; gap: 10px;
@@ -283,7 +286,7 @@
   .live .meta { font-size: 11px; color: var(--teal-300); display: flex; gap: 14px; }
 
   .hero-card.cert {
-    top: -10px; left: -20px;
+    top: 10px; left: 0px;
     padding: 14px 18px;
     background: var(--paper);
     border-radius: 100px;
