@@ -2346,6 +2346,21 @@ document.getElementById('btnNext').addEventListener('click', () => {
       document.getElementById('sumTime').textContent = state.time;
       document.getElementById('sumName').textContent = state.name;
       document.getElementById('sumPrice').textContent = '₹' + state.price.toLocaleString('en-IN');
+
+      const body = [
+        `Service:    ${state.serviceLabel}`,
+        `Date:       ${state.date}`,
+        `Time:       ${state.time}`,
+        `Patient:    ${state.name}`,
+        `Phone:      ${state.phone}`,
+        `Email:      ${state.email || '—'}`,
+        `Age:        ${state.age || '—'}`,
+        `Notes:      ${state.notes || '—'}`,
+        `Referred by:${state.source}`,
+        `Fee:        ₹${state.price.toLocaleString('en-IN')}`,
+      ].join('\n');
+      const subject = encodeURIComponent(`New Booking: ${state.serviceLabel} — ${state.name}`);
+      window.location.href = `mailto:alignasya@gmail.com?subject=${subject}&body=${encodeURIComponent(body)}`;
     }
   }
   updateBookingUI();
